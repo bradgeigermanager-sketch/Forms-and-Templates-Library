@@ -1,0 +1,50 @@
+A vendor or supplier identification and approval form is a standard administrative and financial governance tool. It is utilized to systematically vet, onboard, and authorize new external entities for procurement, ensuring compliance with organizational standards, tax reporting requirements, and operational compatibility before financial transactions commence.
+
+Below is a generalized template procedure designed for integration into a standard administrative and operational task library.
+
+---
+
+### Generalized Procedure: Vendor or Supplier Identification and Approval Form
+
+**Document Type:** Financial / Administrative Onboarding Form
+**Purpose:** To officially identify, evaluate, and authorize a new vendor or supplier for integration into the approved procurement and accounting systems.
+
+#### Required Information [Slots]
+
+To operate this procedure, the following data must be searched for, requested, or inserted into the blanks:
+
+* **[Form Tracking ID / Vendor Number]:** * **[Date of Submission]:** * **[Requesting Entity / Operating Domain]:** (e.g., Specific property management group, technical deployment team, or central procurement)
+
+#### Vendor / Supplier Core Identity
+
+* **[Vendor Legal Entity Name]:** (e.g., Sysco Corporation, LG Electronics, or specific software vendor)
+* **[Doing Business As (DBA) Name]:** (If applicable)
+* **[Primary Business Address]:** * **[Tax Identification Number (TIN) / Employer Identification Number (EIN)]:** (Requires attachment of standard tax form, such as W-9 or W-8BEN)
+* **[Primary Point of Contact]:** * *[Name]:* * *[Phone / Email]:* #### Operational Category and Capability
+* **[Primary Goods or Services Category]:** (e.g., Bulk guest amenities, commercial-grade appliance parts, breakfast food items, or IT infrastructure software)
+* **[Estimated Annual Spend]:** * **[Vendor Exclusivity / Alternative Supplier Status]:** (Identify if this vendor is a sole-source provider or an alternate to an existing supplier)
+
+#### Compliance and System Alignment
+
+* **[Sustainability / Quality Standard Verification]:** (Confirmation that the vendor's operations align with required organizational frameworks, such as Wyndham Green program compliance or equivalent industry standards)
+* **[Technical System Compatibility]:** (If the vendor provides digital services, verify compatibility with the current systems architecture, such as Universal Relational Library deployment standards or data normalization protocols)
+* **[Insurance / Liability Verification]:** (Verify required certificates of insurance and liability limits for on-site service providers)
+
+#### Financial Routing
+
+* **[Remittance Address]:** (If different from the primary business address)
+* **[Authorized Payment Terms]:** (e.g., Net 30, Due on Receipt, Credit Card Pre-Authorization)
+* **[Currency Requirements]:** #### Authorization & Sign-off
+* **[Procurement Officer / General Manager Name]:** * **[Approval Status]:** (Approved / Hold for Additional Documentation / Denied)
+* **[Date of Authorization]:** * **[Authorizing Signature / Digital Verification Hash]:** ---
+
+### Final Document Instructions
+
+* **Utilization:** Insert specific vendor entity and financial data into the bracketed `[slots]` above to generate a completed onboarding record.
+* **Data Normalization:** Ensure the `[Vendor Legal Entity Name]` strictly matches official tax documentation to prevent master data anomalies during integration into the central accounting database or property management systems.
+* **Accessibility Instructions:** * If implemented as a digital intake form for external vendors, ensure robust keyboard navigation and screen reader support through descriptive ARIA roles and labels for all input fields.
+* Form validation error messages must be textually explicit (e.g., "Tax Identification Number is missing") and must not rely exclusively on visual cues such as red outlines.
+* If generated as a static PDF or printable document, maintain a high-contrast layout, sans-serif typography, and clear visual hierarchy using distinct section headings to support users with visual or cognitive impairments.
+
+
+* **Storage:** Maintain the completed form and all appended tax documentation within a secure, encrypted financial repository or the central vendor management relational database.
