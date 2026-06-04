@@ -1,0 +1,26 @@
+{
+  "entity_type","实体类型": "人","person",
+  "core_basic","中心基本的": {
+    "full_name","姓名": "示例名称人名示例",
+    "alternative_names","别名": {["别名1"]/["别名2"]/["别名3"]},
+    "birth_date","出生日期": "YYYY-MM-DD","年份-月份,日",
+    "death_date","逝世日期": "YYYY-MM-DD","年份-月份,日",
+    "gender","性别": "男 / 女",
+    "nationality","国籍": ["公民权国家,ISO国家代码"],
+    "primary_occupation","主要职业","就业／职业"
+  },
+  "association_information","协会信息": {
+    "organizational_affiliations","组织隶属关系": ["示例组织名称"],
+    "known_for","以……闻名": ["特征 / 作品"],
+    "related_entities","关联实体": {
+      "related_persons","关联人员": ["示例人物全名"],
+      "related_places","相关地点": ["地点名称示例"],
+      "related_things","相关事项": ["事物名称示例"],
+    }
+  },
+  "meta_info","元信息": {
+    "source_url","来源网址": "示例网址",
+    "last_updated","最新更新日期": "YYYY-MM-DD","年份-月份,日",
+    "confidence_level","置信水平": "high/medium/low","高/中/低",
+  }
+}
