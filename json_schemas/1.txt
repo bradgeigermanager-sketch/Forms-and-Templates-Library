@@ -1,0 +1,108 @@
+你说得非常对，‌在电子记录中提前标注文档整体语言，完全是低成本高收益的设计‌，能帮搜索引擎和LLM省去大量语言检测的计算量，还能避免字符集、翻译模型错配的麻烦。我把这个设计补充到现有Schema中，遵循统一的标准化规则：
+
+一、新增「文档整体语言标注」的位置和规则
+
+在‌根节点‌新增一个必填的字段，统一用ISO 639-1语言代码数组标注，规则简单清晰：document_languages
+
+放在根节点，程序一次读取就能拿到，不用逐层查找，节省计算
+支持多语言文档（比如同时有古吉拉特语+中文），直接存多个代码即可
+完全复用现有国际标准，不用自定义编码，所有系统直接识别
+二、更新后的完整Schema（带多语言+整体语言标注）
+json
+{
+  "entity_type": "person",
+  "entity_type_cn": "人",
+  "entity_type_gu": "વ્યક્તિ",
+  // 新增：文档整体语言标注，根节点一次读取
+  "document_languages": ["gu", "zh", "en"],
+  "document_languages_note": "整体文档使用的语言，填写ISO 639-1标准代码，支持多语言",
+  "core_basic": {
+    "full_name": "示例人名",
+    "full_name_cn": "姓名",
+    "full_name_gu": "પૂરું નામ",
+    "alternative_names": ["别名1", "别名2"],
+    "alternative_names_cn": "别名",
+    "alternative_names_gu": "વૈકલ્પિક નામો",
+    "birth_date": "YYYY-MM-DD",
+    "birth_date_cn": "出生日期",
+    "birth_date_gu": "જન્મ તારીખ",
+    "birth_date_format_note": "年份-月份-日",
+    "death_date": "YYYY-MM-DD",
+    "death_date_cn": "逝世日期",
+    "death_date_gu": "મૃત્યુ તારીખ",
+    "death_date_format_note": "年份-月份-日",
+    "gender": "男 / 女 / 其他",
+    "gender_cn": "性别",
+    "gender_gu": "લિંગ",
+    "nationality": ["IN"],
+    "nationality_cn": "国籍",
+    "nationality_note": "填写ISO 3166国家代码，支持多重国籍",
+    "primary_language": ["gu"],
+    "primary_language_cn": "主要语言",
+    "primary_language_gu": "પ્રાથમિક ભાષા",
+    "primary_language_note": "填写ISO 639-1语言代码，支持多母语",
+    "primary_occupation": "主要职业名称",
+    "primary_occupation_cn": "主要职业",
+    "primary_occupation_gu": "પ્રાથમિક વ્યવસાય"
+  },
+  "association_information": {
+    "association_information_cn": "关联信息",
+    "association_information_gu": "સંગઠન માહિતી",
+    "organizational_affiliations": ["示例组织名称"],
+    "organizational_affiliations_cn": "组织隶属关系",
+    "organizational_affiliations_gu": "સંસ્થાકીય સંલગ્નતા",
+    "known_for": ["特征 / 代表作品"],
+    "known_for_cn": "以……闻名",
+    "known_for_gu": "જાણીતા છે",
+    "related_entities": {
+      "related_entities_cn": "关联实体",
+      "related_entities_gu": "સંબંધિત એકમો",
+      "related_persons": ["关联人物全名"],
+      "related_persons_cn": "关联人员",
+      "related_persons_gu": "સંબંધિત વ્યક્તિઓ",
+      "related_places": ["关联地点名称"],
+      "related_places_cn": "相关地点",
+      "related_places_gu": "સંબંધિત સ્થળો",
+      "related_things": ["关联事物名称"],
+      "related_things_cn": "相关事项",
+      "related_things_gu": "સંબંધિત વસ્તુઓ"
+    }
+  },
+  "meta_info": {
+    "source_url": "示例来源网址",
+    "source_url_cn": "来源网址",
+    "source_url_gu": "સ્રોત URL",
+    "last_updated": "YYYY-MM-DD",
+    "last_updated_cn": "最新更新日期",
+    "last_updated_gu": "છેલ્લું અપડેટ",
+    "last_updated_format_note": "年份-月份-日",
+    "confidence_level": "high/medium/low",
+    "confidence_level_cn": "置信水平",
+    "confidence_level_gu": "વિશ્વાસ સ્તર",
+    "confidence_level_desc": "高/中/低"
+  },
+  "attached_link_library": ["WL-XXXXXXXXX"],
+  "attached_link_library_cn": "关联链接库ID",
+  "attached_link_library_gu": "જોડાયેલ લિંક લાઇબ્રેરી ID"
+}
+
+三、这个设计解决的实际问题
+省算力‌：LLM/搜索引擎不用先运行语言检测模型，直接读取根节点的标注就能加载对应翻译模型和字符集，省去大量重复计算
+避免错配‌：不会出现先加载错误字符集，翻译到一半发现错了再重新处理的麻烦，完全避免你说的“错译麻烦”
+Multilingual document compatibility: If a record contains three languages simultaneously, directly store three codes, allowing the model to load three corresponding translation matrices at once, resulting in more accurate processing
+Extremely low incremental cost: adding only one array field at the root node neglects data volume increase, with almost no impact on storage and transmission
+4. Design Recommendations for Supporting Pre-Conversion Tools
+
+The "link to pre-built machine translation/conversion tool" you mentioned can be linked to a simple extension field to directly link the tool address for easy access:meta_info
+
+json
+"meta_info": {
+  // ...原有字段不变
+  "translation_tool_link": "https://your-domain/tools/iso-converter",
+  "translation_tool_note": "预构建的ISO代码转换/机器翻译工具地址"
+}
+
+
+This allows all systems using this schema to jump directly or call tools for automatic conversion, without manually searching for encoding matching tables, further reducing understanding costs.
+
+Do you need me to synchronize the design of the root node language annotations into the schema templates of organizations, locations, and other entities?
