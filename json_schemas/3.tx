@@ -1,0 +1,173 @@
+你的理解完全精准，这个场景下我们可以把‌「扁平_lang后缀+可选字段规则+草稿板批处理桥接」‌结合起来，既满足“同条目多语言额外条目可选存在”，又能顺畅支持批量处理，规则机器和人都能清晰理解：
+
+一、先解决「额外多语言条目可选存在」的标注问题
+
+在JSON Schema定义中用‌"模式匹配+可选标记"‌就能清晰传达规则：所有都是‌同一条目的额外语言实例，仅在有对应翻译时添加，没有就可以完全不写‌，完全不破坏模板结构。原字段_[语言代码]
+
+标准JSON Schema定义示例（直接可用）
+json
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "支持可选多语言实例的Person模板",
+  "type": "object",
+  "required": ["entity_type", "document_languages", "core_basic"],
+  "properties": {
+    "entity_type": { "type": "string" },
+    "document_languages": { "type": "array", "items": { "type": "string" } },
+    "core_basic": {
+      "type": "object",
+      "required": ["full_name"], // 只要求必填主字段，额外语言都可选
+      "properties": {
+        "full_name": { "type": "string", "description": "同条目默认语言内容，必填" },
+        // 用patternProperties匹配所有后缀格式，标记为可选
+        "patternProperties": {
+          "^full_name_[a-z]{2}$": {
+            "type": "string",
+            "description": "同一条目full_name的额外语言实例，仅需要时添加，可选"
+          }
+        },
+        "additionalProperties": false // 仅允许符合规则的额外条目
+      }
+    }
+  }
+}
+
+实际使用效果（完全贴合需求）
+表格
+场景	最终数据结构	是否符合模板
+只有英文，不需要额外语言	{"full_name": "Mohan Patel"}	✅ 完全匹配，没有额外条目也合法
+需要加古吉拉特语，不需要中文	{"full_name": "Mohan Patel", "full_name_gu": "મોહન પટેલ"}	✅ 额外条目存在也合法，明确是同条目不同语言
+需要加古吉拉特语+中文	{"full_name": "Mohan Patel", "full_name_gu": "મોહન પટેલ", "full_name_zh": "莫汉·帕特尔"}	✅ 加多少都符合规则
+
+不管加多少、加不加额外语言实例，模板核心结构都完全不变，天然满足“部分实例有额外条目、部分没有，仍匹配模板”的需求。
+
+二、配合批处理的草稿板桥接方案
+
+完全贴合你说的思路，用一个独立的临时草稿板Schema，收集批量处理的多语言数据，再循环转成最终的标准Schema，流程非常顺畅：
+
+1. 临时草稿板Schema结构（批量收集用）
+json
+{
+  "batch_id": "BATCH-20260604-001", // 批次ID
+  "status": "processing", // 处理状态：processing/done/failed
+  "total_count": 1200, // 总条目数
+  "processed_count": 350, // 已处理数
+  "pending_items": [ // 待处理的原始多语言数据，循环处理
+    {
+      "original_entity_id": "P-00123",
+      "field_key": "full_name",
+      "original_value": "Mohan Patel",
+      "add_language_entries": [
+        { "lang": "gu", "value": "મોહન પટેલ" },
+        { "lang": "zh", "value": "莫汉·帕特尔" }
+      ]
+    }
+  ],
+  "processed_items": [], // 已处理完成，待转存
+  "failed_items": [] // 处理失败，待人工复核
+}
+
+2. 批处理循环流程
+把所有需要新增多语言条目的原始数据，一次性导入临时草稿板
+循环遍历每个待处理条目：取出原始字段+额外语言，转成标准的后缀格式，写入最终Schema字段_语言
+每处理完一个就移动到，处理失败就移动到processed_itemsfailed_items
+After all processing is complete, clear the draft board and wait for the next batch
+The advantages of this solution
+It does not affect the structure of the final standard schema; the draft board can be discarded after use, and only the processed standard data is kept
+Resume with breakpoints is very convenient: after a program interruption, restart and process directly from continuation, without having to start overpending_items
+Clear failure statistics: All error-generated entries are concentrated, with high manual review efficiencyfailed_items
+3. Core rules are clear for both machines and humans
+For people: seeing the suffix, you immediately understand this is "the xx language version of the original field, an extra instance of the same entry," no need for further explanation字段_xx
+For machines: JSON Schema natively supports this rule, allowing parsing tools to instantly identify which are extra multilingual instances and won't mistakenly identify them as illegal fieldspatternProperties
+Compatibility: Regardless of additional instances, the template structure is completely consistent. Batch processing only needs to handle newly added entries and does not require modifying the entire template
+
+This method perfectly matches the scenario you mentioned: it solves the problem of "some instances have extra multilingual entries, some do not, still match templates," and it can smoothly bridge with temporary draft boards to support batch processing.
+
+Do you need me to help you organize a complete JSON Schema draft board code for direct batch processing development?
+
+你的理解完全精准，这个场景下我们可以把‌「扁平_lang后缀+可选字段规则+草稿板批处理桥接」‌结合起来，既满足“同条目多语言额外条目可选存在”，又能顺畅支持批量处理，规则机器和人都能清晰理解：
+
+一、先解决「额外多语言条目可选存在」的标注问题
+
+在JSON Schema定义中用‌"模式匹配+可选标记"‌就能清晰传达规则：所有都是‌同一条目的额外语言实例，仅在有对应翻译时添加，没有就可以完全不写‌，完全不破坏模板结构。原字段_[语言代码]
+
+标准JSON Schema定义示例（直接可用）
+json
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "支持可选多语言实例的Person模板",
+  "type": "object",
+  "required": ["entity_type", "document_languages", "core_basic"],
+  "properties": {
+    "entity_type": { "type": "string" },
+    "document_languages": { "type": "array", "items": { "type": "string" } },
+    "core_basic": {
+      "type": "object",
+      "required": ["full_name"], // 只要求必填主字段，额外语言都可选
+      "properties": {
+        "full_name": { "type": "string", "description": "同条目默认语言内容，必填" },
+        // 用patternProperties匹配所有后缀格式，标记为可选
+        "patternProperties": {
+          "^full_name_[a-z]{2}$": {
+            "type": "string",
+            "description": "同一条目full_name的额外语言实例，仅需要时添加，可选"
+          }
+        },
+        "additionalProperties": false // 仅允许符合规则的额外条目
+      }
+    }
+  }
+}
+
+实际使用效果（完全贴合需求）
+表格
+场景	最终数据结构	是否符合模板
+只有英文，不需要额外语言	{"full_name": "Mohan Patel"}	✅ 完全匹配，没有额外条目也合法
+需要加古吉拉特语，不需要中文	{"full_name": "Mohan Patel", "full_name_gu": "મોહન પટેલ"}	✅ 额外条目存在也合法，明确是同条目不同语言
+需要加古吉拉特语+中文	{"full_name": "Mohan Patel", "full_name_gu": "મોહન પટેલ", "full_name_zh": "莫汉·帕特尔"}	✅ 加多少都符合规则
+
+不管加多少、加不加额外语言实例，模板核心结构都完全不变，天然满足“部分实例有额外条目、部分没有，仍匹配模板”的需求。
+
+二、配合批处理的草稿板桥接方案
+
+完全贴合你说的思路，用一个独立的临时草稿板Schema，收集批量处理的多语言数据，再循环转成最终的标准Schema，流程非常顺畅：
+
+1. 临时草稿板Schema结构（批量收集用）
+json
+{
+  "batch_id": "BATCH-20260604-001", // 批次ID
+  "status": "processing", // 处理状态：processing/done/failed
+  "total_count": 1200, // 总条目数
+  "processed_count": 350, // 已处理数
+  "pending_items": [ // 待处理的原始多语言数据，循环处理
+    {
+      "original_entity_id": "P-00123",
+      "field_key": "full_name",
+      "original_value": "Mohan Patel",
+      "add_language_entries": [
+        { "lang": "gu", "value": "મોહન પટેલ" },
+        { "lang": "zh", "value": "莫汉·帕特尔" }
+      ]
+    }
+  ],
+  "processed_items": [], // 已处理完成，待转存
+  "failed_items": [] // 处理失败，待人工复核
+}
+
+2. 批处理循环流程
+把所有需要新增多语言条目的原始数据，一次性导入临时草稿板
+循环遍历每个待处理条目：取出原始字段+额外语言，转成标准的后缀格式，写入最终Schema字段_语言
+每处理完一个就移动到，处理失败就移动到processed_itemsfailed_items
+全部处理完成后，清空草稿板，等待下一批次
+这个方案的优势
+不影响最终标准Schema的结构，草稿板用完就可以丢弃，只存处理好的标准数据
+断点续跑非常方便：程序中断后重启，直接从继续处理，不用重新开始pending_items
+失败统计清晰：所有处理出错的条目集中在，人工复核效率高failed_items
+三、核心规则对机器和人工都清晰
+对人‌：看到后缀，立刻就能理解这是「原字段的xx语言版本，同一条目额外实例」，不需要额外说明字段_xx
+对机器‌：JSON Schema的原生支持这个规则，解析工具一眼就能识别哪些是额外多语言实例，不会误判为非法字段patternProperties
+兼容性‌：不管有没有额外实例，模板结构完全一致，批处理只需要处理有新增的条目，不需要修改整个模板
+
+这套方法完全匹配你说的场景：既解决了“部分实例有额外多语言条目，部分没有，仍匹配模板”的问题，又能用临时草稿板桥接顺畅支持批量处理。
+
+需要我帮你整理出完整的草稿板JSON Schema代码，直接用于批量处理开发吗？
