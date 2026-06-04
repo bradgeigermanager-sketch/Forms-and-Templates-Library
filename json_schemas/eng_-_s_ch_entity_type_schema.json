@@ -1,0 +1,51 @@
+{
+  "entity_type": "person",
+  "entity_type_cn": "人",
+  "core_basic": {
+    "full_name": "示例人名",
+    "full_name_cn": "姓名",
+    "alternative_names": ["别名1", "别名2", "别名3"],
+    "alternative_names_cn": "别名",
+    "birth_date": "YYYY-MM-DD",
+    "birth_date_cn": "出生日期",
+    "birth_date_format_note": "年份-月份-日",
+    "death_date": "YYYY-MM-DD",
+    "death_date_cn": "逝世日期",
+    "death_date_format_note": "年份-月份-日",
+    "gender": "男 / 女",
+    "gender_cn": "性别",
+    "nationality": ["CN"],
+    "nationality_cn": "国籍",
+    "nationality_note": "填写ISO国家代码，数组支持多重国籍",
+    "primary_occupation": "主要职业名称",
+    "primary_occupation_cn": "主要职业"
+  },
+  "association_information": {
+    "association_information_cn": "关联信息",
+    "organizational_affiliations": ["示例组织名称"],
+    "organizational_affiliations_cn": "组织隶属关系",
+    "known_for": ["特征 / 代表作品"],
+    "known_for_cn": "以……闻名",
+    "related_entities": {
+      "related_entities_cn": "关联实体",
+      "related_persons": ["关联人物全名"],
+      "related_persons_cn": "关联人员",
+      "related_places": ["关联地点名称"],
+      "related_places_cn": "相关地点",
+      "related_things": ["关联事物名称"],
+      "related_things_cn": "相关事项"
+    }
+  },
+  "meta_info": {
+    "source_url": "示例来源网址",
+    "source_url_cn": "来源网址",
+    "last_updated": "YYYY-MM-DD",
+    "last_updated_cn": "最新更新日期",
+    "last_updated_format_note": "年份-月份-日",
+    "confidence_level": "high/medium/low",
+    "confidence_level_cn": "置信水平",
+    "confidence_level_desc": "高/中/低"
+  },
+  "attached_link_library": ["WL-XXXXXXXXX"],
+  "attached_link_library_cn": "关联链接库ID"
+}
