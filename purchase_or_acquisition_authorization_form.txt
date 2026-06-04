@@ -1,0 +1,45 @@
+A purchase or acquisition authorization form is a critical administrative and financial instrument utilized to formally request, document, justify, and approve the expenditure of organizational funds for physical goods, digital assets, or contracted services. This ensures budget compliance, operational alignment, and an auditable financial trail prior to the commitment of capital.
+
+The following is a generalized template procedure designed for integration into a standard administrative and operational task library.
+
+---
+
+### Generalized Procedure: Purchase or Acquisition Authorization Form
+
+**Document Type:** Financial / Administrative Authorization Form
+**Purpose:** To officially record, justify, and approve the procurement of physical or digital assets and services.
+
+#### Required Information [Slots]
+
+To operate this procedure, the following data must be searched for, requested, or inserted into the blanks:
+
+* **[Form Tracking ID / PO Request Number]:** * **[Date of Request]:** * **[Requester Name / Operating Title]:** * **[Requesting Department / Property Location]:** (e.g., Specific property address, management group, or technical domain)
+
+#### Vendor / Supplier Information
+
+* **[Vendor / Supplier Name]:** (e.g., Sysco, LG, Samsung, or specific software provider)
+* **[Vendor Contact Information]:** * **[Organization's Account Number with Vendor]:** #### Acquisition Details
+* **[Itemized List of Goods / Services]:** * *Slot format per item:* [Quantity] | [Part/SKU Number] | [Description - e.g., 55-inch UHD 4K television, commercial drain pump, bulk guest amenities] | [Unit Cost] | [Extended Cost]
+* **[Total Acquisition Cost]:** * **[Tax Assessment / Freight Cost]:** * **[Total Authorized Expenditure]:** #### Financial Routing and Delivery
+* **[Budget Code / Ledger Account to be Billed]:** * **[Delivery / Shipping Address]:** * **[Receiving Contact / Asset Deployment Location]:** (Specify if the asset requires installation at a specific property or integration into a specific digital environment)
+
+#### Justification
+
+* **[Business Justification]:** (Reason for acquisition, such as routine inventory restock, preventative maintenance replacement, or infrastructure upgrade)
+* **[Sustainability / Compliance Check]:** (Verification that the acquisition aligns with required operational standards, such as Wyndham Green program compliance or system compatibility)
+
+#### Authorization & Sign-off
+
+* **[Authorizing Financial Officer / Manager Name]:** * **[Approval Status]:** (Approved / Denied / Pending Modification)
+* **[Date of Authorization]:** * **[Authorizing Signature / Digital Verification Hash]:** ---
+
+### Final Document Instructions
+
+* **Utilization:** Insert specific operational and financial data into the bracketed `[slots]` above to generate a completed purchase authorization record.
+* **Accuracy:** Ensure all `[Part/SKU Number]` and `[Unit Cost]` entries match current vendor catalogs and pricing agreements to prevent accounting anomalies.
+* **Accessibility Instructions:** * If deployed digitally (e.g., via HTML form or Google Forms), ensure all input fields possess descriptive ARIA labels for screen-reader compatibility.
+* If rendered as a printable document, maintain a high-contrast ratio (minimum 4.5:1) for all text and utilize sans-serif fonts to ensure readability for personnel with visual impairments.
+* Ensure interactive elements can be navigated via keyboard controls exclusively.
+
+
+* **Storage:** Maintain completed authorization forms within the central accounting database, integrated inventory management system, or secure document repository for audit purposes.
