@@ -1,0 +1,51 @@
+A service provider identification and approval form is an administrative and compliance instrument utilized to systematically evaluate, onboard, and authorize external entities contracted to perform specific operational, technical, or professional services. This document ensures the provider meets organizational standards, possesses required insurance and certifications, and is cleared for appropriate physical or digital access.
+
+Below is a generalized template procedure designed for integration into a standard administrative and operational task library.
+
+---
+
+### Generalized Procedure: Service Provider Identification and Approval Form
+
+**Document Type:** Administrative / Compliance Onboarding Form
+**Purpose:** To officially identify, vet, and authorize a service provider for operational integration and financial compensation.
+
+#### Required Information [Slots]
+
+To operate this procedure, the following data must be searched for, requested, or inserted into the blanks:
+
+* **[Form Tracking ID / Provider Number]:** * **[Date of Submission]:** * **[Requesting Entity / Operating Domain]:** (e.g., Specific property location, technical deployment team, or shared property easement management)
+
+#### Service Provider Core Identity
+
+* **[Provider Legal Entity Name]:** * **[Doing Business As (DBA) Name]:** (If applicable)
+* **[Primary Business Address]:** * **[Tax Identification Number (TIN) / Employer Identification Number (EIN)]:** (Requires attachment of W-9 or equivalent)
+* **[Primary Point of Contact]:** * *[Name]:* * *[Phone / Email]:* #### Scope of Services and Capabilities
+* **[Service Category]:** (e.g., HVAC maintenance, snow removal and weed mitigation, software engineering, or technical systems architecture)
+* **[Description of Services]:** * **[Service Level Agreement (SLA) / Performance Metrics]:** (Defined expectations for response times, uptime, or task completion frequency)
+
+#### Compliance, Security, and Access
+
+* **[Insurance / Liability Verification]:** (Confirmation of general liability, workers' compensation, or professional indemnity coverage limits)
+* **[Certifications / Licensing Verification]:** (Required state, municipal, or professional licenses)
+* **[Physical Access Requirements]:** (Identify required master keys, security badges, or restricted area clearances)
+* **[Digital Access Requirements]:** (Identify required network access, VPN provisioning, or specific database/system permissions)
+* **[Sustainability / Operational Standard Alignment]:** (Verification of compliance with frameworks such as the Wyndham Green program or equivalent protocols)
+
+#### Financial Terms
+
+* **[Compensation Structure]:** (e.g., Hourly rate, fixed monthly retainer, per-incident billing)
+* **[Authorized Payment Terms]:** (e.g., Net 30, Due on Receipt)
+* **[Remittance Address / Payment Routing]:** #### Authorization & Sign-off
+* **[Approving Manager / Operations Director Name]:** * **[Approval Status]:** (Approved / Hold for Documentation / Denied)
+* **[Date of Authorization]:** * **[Authorizing Signature / Digital Verification Hash]:** ---
+
+### Final Document Instructions
+
+* **Utilization:** Insert specific provider identity, operational scope, and financial data into the bracketed `[slots]` above to generate a definitive service provider onboarding record.
+* **Data Verification:** Ensure the `[Certifications / Licensing Verification]` and `[Insurance / Liability Verification]` slots are cross-referenced with active, non-expired documentation provided by the service entity before granting approval.
+* **Accessibility Instructions:** * If integrated into a digital intake portal, ensure all form fields utilize descriptive ARIA (Accessible Rich Internet Applications) attributes and semantic HTML to support full functionality for screen-reader software.
+* Interactive elements (checkboxes, drop-downs for approval status) must be entirely operable via keyboard navigation without reliance on a mouse.
+* If utilized as a static or printed document, implement a high-contrast color scheme (minimum 4.5:1 ratio) and utilize distinct, structured headings to aid users with visual impairments or cognitive processing considerations.
+
+
+* **Storage:** Maintain the completed authorization form, appended tax documentation, and proof of insurance within the central vendor management relational database or secure compliance repository.
