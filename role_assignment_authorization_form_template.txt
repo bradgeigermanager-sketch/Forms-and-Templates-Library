@@ -1,0 +1,44 @@
+A role assignment authorization form is a standardized document utilized to request, approve, and track the delegation of specific permissions, access rights, or operational responsibilities to an individual or automated identity.
+
+These forms are predominantly utilized in two areas:
+
+1. **Systems Architecture & IT:** Managing Role-Based Access Control (RBAC) for cloud environments, databases, and software applications (e.g., assigning a managed identity to a specific resource group).
+2. **Administrative Operations:** Delegating legal, financial, or operational authority within an organization (e.g., HR role changes, signing authority delegation, or property management access).
+
+Below is a generalized template procedure for a Role Assignment Authorization Form, designed for integration into a standard task library.
+
+---
+
+### Generalized Procedure: Role Assignment Authorization
+
+**Document Type:** Administrative / Technical Authorization Form
+**Purpose:** To officially record and authorize the assignment of a specific role, permission set, or operational responsibility to an entity.
+
+#### Required Information [Slots]
+
+To operate this procedure, the following data must be searched for, requested, or inserted into the blanks:
+
+* **[Form Tracking ID]:** * **[Date of Request]:** * **[Requester Name / Identifier]:** * **[Requester Department / Domain]:** #### Target Entity Information
+* **[Target Entity Name]:** (The individual, service account, or managed identity receiving the role)
+* **[Target Entity Identifier]:** (Employee ID, Object ID, or system username)
+* **[Current Role / Status]:** #### Assignment Details
+* **[Role Name / Permission Set to be Assigned]:** (e.g., "Property Manager", "System Administrator", "Contributor")
+* **[Scope of Assignment]:** (Identify the exact systems, properties, resource groups, or operational boundaries this role applies to)
+* **[Assignment Type]:** (Permanent / Temporary)
+* **[Effective Start Date]:** * **[Effective End Date]:** (If applicable, or insert "Indefinite")
+
+#### Justification & Dependencies
+
+* **[Business Justification]:** (Reason for the role assignment, such as a change in operational duties or a newly deployed script requiring system access)
+* **[Dependent Systems/Tasks impacted]:** (List any secondary systems that will be affected by this authorization)
+
+#### Authorization & Sign-off
+
+* **[Authorizing Authority Name / Identifier]:** * **[Authorization Status]:** (Approved / Denied / Pending)
+* **[Date of Authorization]:** * **[Digital Signature / Verification Hash]:** ---
+
+### Final Document Instructions
+
+* **Utilization:** Insert specific operational data into the bracketed `[slots]` above to generate a completed authorization record.
+* **Storage:** Maintain completed forms within the appropriate relational database or encrypted document repository.
+* **Maintenance:** Ensure the `[Role Name / Permission Set]` slot utilizes standardized terminology matching the target system's exact metadata or the organization's official job code library to prevent normalization errors.
